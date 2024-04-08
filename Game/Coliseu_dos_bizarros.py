@@ -3,6 +3,7 @@
 import sys
 import os
 from time import sleep
+from random import randint
 
 # Area reservada para as funções
 
@@ -25,11 +26,18 @@ def reset():
 
 def linha():
     print('-'*40)
+    
+    
+def pontos(n):
+    for c in range(1, n+1):
+        print('.')
+        sleep(0.05)
+        c += 1
         
 
 # introdução do game
 
-'''
+
 
 Abertura = [
     'Narrador: você acorda em uma cela suja e enferrujada com o barulho de uma multidão muito entusiasmada ...',
@@ -65,7 +73,7 @@ tutorial_no = [
     '...'
 ]
 
-tutorial = str(input('Deseja saber como funciona o game ? S ou N    ')).upper()
+tutorial = str(input('Narrador: deseja saber como funciona o game ? S ou N    ')).upper()
 
 if tutorial == 'S':
     imprimir(tutorial_yes)
@@ -80,44 +88,128 @@ elif tutorial != 'S' and tutorial != 'N':
         sleep(1)
     reset()
     
-'''    
+  
 # abertura do game
 
 linha()
 print('         COLISEU DOS BIZARROS')
 linha()
 
-for c in range(1,11):
-    print('.')
-    sleep(0.05)
+pontos(10)
 
 
 inicio = [
-    'Narrador: Para iniciar o game basta digitar ‘start’',
-    'Narrador: Se quiser sair do game basta digitar ‘exit’',
-    'Narrador: Não seja burro é sem as aspas'
+    'Narrador: Para iniciar o game basta digitar start',
+    'Narrador: Se quiser sair do game basta digitar exit',
 ]
 
 imprimir(inicio)
 
-start = str(input('Deseja iniciar o game?   ')).upper()
+start = str(input('Narrador: deseja iniciar o game?   ')).upper()
 
 if start == 'START':
-    for c in range(1,11):
-        print('.')
-        sleep(0.05)
+    pontos(10)
 elif start == 'EXIT':
     print('ainda nn tem')
 elif start != 'START' and start != 'EXIT':
     print('Narrador: erro, não reconhecido a escolha do jogador, apenas respostas como start ou exit.')
     print('Narrador: não seja burro')
     print('Narrador: o jogo irá dar reset em 5 segundos')
-    for c in range(1,6):
-        print('.')
-        c += 1
-        sleep(1)
+    pontos(10)
     reset()
 
+ 
 
 # sorte e seleção de arma
+
+
+
+sorte = int(randint(1,3))
+
+if sorte == 1:
+    print(f'Narrador: sua sorte é {sorte}, parabéns você vai se ferrar muito.')
+elif sorte == 2:
+    print(f'Narrador: sua sorte é {sorte}, eeehhh da pro gasto, não vai passar tanto sufoco assim.')
+elif sorte == 3:
+    print(f'Narrador: sua sorte é {sorte}, OLHAAA ELE, VAI SER MOLEZINHA !!!')
+    
+
+pontos(5)
+
+
+armas1 = [
+    'Narrador: agora vamos escolher sua arma ...',
+    'Narrador: lembrando que você tem 3 opções.',
+    'Narrador: espada de cavaleiro – ela esta meio velha e gasta, mas ainda dá pra usar, vai aguentar bem.',
+    'Narrador: ela é uma arma balanceada nem tão forte por ter o fio de sua lâmina já gasto.',
+    'Narrador: e também não é tão rápida, o ferreiro que fez ela devia estar brava com o cavaleiro, ela não e muito balanceada.'
+]
+
+armas2 = [
+    'Narrador: machado de bárbaro – um machado grande e bem afiada com um cabo de mogno.',
+    'Narrador:  seu antigo dono devia ser alguém q gostava de matar pois ele foi feito pra destruir tudo pela frente.',
+    'Narrador: porem ele e com certeza mais pesado que a espada, por isso esse machado está aqui e não com o dono ...'
+]
+
+armas3 = [
+    'Narrador: adaga de ladrão – uma bela adaga muito bonita, seu dono morreu a alguns minutos no coliseu ...',
+    'Narrador: deve ser extremamente rápida em batalha.',
+    'Narrador:  porem em lutas mano a mano vai ser difícil de causar o ataque que ela e capaz de infringir.'
+]
+
+
+imprimir(armas1)
+pontos(3)
+
+imprimir(armas2)
+pontos(3)
+
+imprimir(armas3)
+pontos(3)
+
+
+dano = 0 
+velocidade = 0
+
+armas4 = [
+    'Narrador: anda logo, escolhe sua arma',
+    'Narrador: pra escolher e só digitar, espada, machado ou adaga, para a arma que você quer'
+]
+
+imprimir(armas4)
+pontos(3)
+
+
+
+escolha = str(input('Narrador: qual arma você quer?     ')).upper()
+
+
+espada = [
+    'Narrador: voce escolheu a espada.',
+    'Narrador: uma boa escolha, neutra eu diria.',
+    'Narrador: não me decepcione.'
+]
+
+machado = [
+    'Narrador: você escolheu a machado.',
+    'Narrador: essa escolha sua e interessante, vamos ver como você vai se sair.',
+    'Narrador: não me decepcione.'
+]
+
+adaga = [
+    'Narrador: você escolheu a adaga.',
+    'Narrador: essa escolha sua e interessante, vamos ver como você vai se sair.',
+    'Narrador: não me decepcione.'
+]
+
+
+if escolha == 'ESPADA':
+    imprimir(espada)
+elif escolha == 'MACHADO':
+    imprimir(machado)
+elif escolha == 'ADAGA':
+    imprimir(adaga)
+
+
+# apresentando atributos do jogados
 
