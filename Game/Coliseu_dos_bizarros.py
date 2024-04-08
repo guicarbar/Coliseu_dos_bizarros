@@ -5,6 +5,16 @@ import os
 from time import sleep
 from random import randint
 
+# area das variaveis
+
+
+sorte = int(randint(1,3))
+
+dano = 0 
+velocidade = 0
+
+
+
 # Area reservada para as funções
 
 def write(t):
@@ -35,8 +45,27 @@ def pontos(n):
         c += 1
         
 
-# introdução do game
+def close():
+    sys.exit()
+    
+    
+def espada():
+    global dano, velocidade
+    dano = 5
+    velocidade = 5
+    
+def machado():
+    global dano, velocidade
+    dano = 8
+    velocidade = 3
 
+
+def adaga():
+    global dano, velocidade
+    dano = 3
+    velocidade = 8
+
+# introdução do game
 
 
 Abertura = [
@@ -62,7 +91,7 @@ tutorial_yes = [
     'Narrador: após escolher sua sorte você terá que escolher sua arma.',
     'Narrador: que também tem 3 opções.',
     'Narrador: espada de cavaleiro, machado de bárbaro e adaga de ladrão.',
-    'Narrador: e cada uma dessas armas terão atributos diferentes q iram influenciar em suas batalhas no coliseu.',
+    'Narrador: e cada uma dessas armas terão atributos diferentes que iram influenciar em suas batalhas no coliseu.',
     'Narrador: escolha com sabedoria, boa sorte!!!'
 ]
 
@@ -91,6 +120,8 @@ elif tutorial != 'S' and tutorial != 'N':
   
 # abertura do game
 
+pontos(10)
+
 linha()
 print('         COLISEU DOS BIZARROS')
 linha()
@@ -105,16 +136,30 @@ inicio = [
 
 imprimir(inicio)
 
+inicio = 'Narrador: vamos lá então!!!'
+
+close = [
+    'Narrador: que pena, te vejo em uma proxima vez!',
+    'Narrador: o programa vai ser fechado em 5 segundos.'
+]
+
+burro = [
+    'Narrador: erro, não reconhecido a escolha do jogador, apenas respostas como start ou exit.',
+    'Narrador: não seja burro',
+    'Narrador: o jogo irá dar reset em 5 segundos'
+]
+
 start = str(input('Narrador: deseja iniciar o game?   ')).upper()
 
 if start == 'START':
+    imprimir(inicio)
     pontos(10)
 elif start == 'EXIT':
-    print('ainda nn tem')
+    imprimir(close)
+    pontos(10)
+    close()
 elif start != 'START' and start != 'EXIT':
-    print('Narrador: erro, não reconhecido a escolha do jogador, apenas respostas como start ou exit.')
-    print('Narrador: não seja burro')
-    print('Narrador: o jogo irá dar reset em 5 segundos')
+    imprimir(burro)
     pontos(10)
     reset()
 
@@ -122,9 +167,6 @@ elif start != 'START' and start != 'EXIT':
 
 # sorte e seleção de arma
 
-
-
-sorte = int(randint(1,3))
 
 if sorte == 1:
     print(f'Narrador: sua sorte é {sorte}, parabéns você vai se ferrar muito.')
@@ -142,7 +184,7 @@ armas1 = [
     'Narrador: lembrando que você tem 3 opções.',
     'Narrador: espada de cavaleiro – ela esta meio velha e gasta, mas ainda dá pra usar, vai aguentar bem.',
     'Narrador: ela é uma arma balanceada nem tão forte por ter o fio de sua lâmina já gasto.',
-    'Narrador: e também não é tão rápida, o ferreiro que fez ela devia estar brava com o cavaleiro, ela não e muito balanceada.'
+    'Narrador: e também não é tão rápida, o ferreiro que fez ela devia estar brava com o cavaleiro, ela é um pouco desequilibrada.'
 ]
 
 armas2 = [
@@ -167,9 +209,6 @@ pontos(3)
 imprimir(armas3)
 pontos(3)
 
-
-dano = 0 
-velocidade = 0
 
 armas4 = [
     'Narrador: anda logo, escolhe sua arma',
@@ -205,10 +244,13 @@ adaga = [
 
 if escolha == 'ESPADA':
     imprimir(espada)
+    espada()
 elif escolha == 'MACHADO':
     imprimir(machado)
+    machado()
 elif escolha == 'ADAGA':
     imprimir(adaga)
+    adaga()
 
 
 # apresentando atributos do jogados
