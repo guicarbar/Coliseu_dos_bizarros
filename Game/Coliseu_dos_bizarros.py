@@ -59,9 +59,9 @@ tutorial_yes = [
 ]
 
 tutorial_no = [
-    'Vejo que você é o espertalhão.',
-    'Boa sorte então!',
-    'Que os jogos comecem',
+    'Narrador: vejo que você é o espertalhão.',
+    'Narrador: boa sorte então!',
+    'Narrador: que os jogos comecem',
     '...'
 ]
 
@@ -72,8 +72,8 @@ if tutorial == 'S':
 elif tutorial == 'N':
     imprimir(tutorial_no)
 elif tutorial != 'S' and tutorial != 'N':
-    print('Erro, não reconhecido a escolha do jogador, apenas respostas como s ou n.')
-    print('O jogo irá dar reset em 5 segundos')
+    print('Narrador: erro, não reconhecido a escolha do jogador, apenas respostas como s ou n.')
+    print('Narrador: o jogo irá dar reset em 5 segundos')
     for c in range(1,6):
         print('.')
         c += 1
@@ -86,3 +86,38 @@ elif tutorial != 'S' and tutorial != 'N':
 linha()
 print('         COLISEU DOS BIZARROS')
 linha()
+
+for c in range(1,11):
+    print('.')
+    sleep(0.05)
+
+
+inicio = [
+    'Narrador: Para iniciar o game basta digitar ‘start’',
+    'Narrador: Se quiser sair do game basta digitar ‘exit’',
+    'Narrador: Não seja burro é sem as aspas'
+]
+
+imprimir(inicio)
+
+start = str(input('Deseja iniciar o game?   ')).upper()
+
+if start == 'START':
+    for c in range(1,11):
+        print('.')
+        sleep(0.05)
+elif start == 'EXIT':
+    print('ainda nn tem')
+elif start != 'START' and start != 'EXIT':
+    print('Narrador: erro, não reconhecido a escolha do jogador, apenas respostas como start ou exit.')
+    print('Narrador: não seja burro')
+    print('Narrador: o jogo irá dar reset em 5 segundos')
+    for c in range(1,6):
+        print('.')
+        c += 1
+        sleep(1)
+    reset()
+
+
+# sorte e seleção de arma
+
