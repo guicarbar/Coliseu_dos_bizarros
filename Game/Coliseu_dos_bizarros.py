@@ -255,3 +255,20 @@ elif escolha == 'ADAGA':
 
 # apresentando atributos do jogados
 
+
+pontos(10)
+
+atributos = [
+    'Narrado: vamos lembrar ...',
+    'Narrado: seus atributos nessa partida são ...',
+    f'Sorte: {sorte}',
+    f'Dano: {dano}',
+    f'Velocidade: {velocidade}'
+    'Agora vamos continuar.'
+]
+
+pontos(5)
+
+
+# inicio do game
+
