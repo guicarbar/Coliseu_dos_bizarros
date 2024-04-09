@@ -8,10 +8,24 @@ from random import randint
 # area das variaveis
 
 
-sorte = int(randint(1,3))
+# sorte = int(randint(1,3))
 
-dano = 0 
-velocidade = 0
+
+sorte = 3
+
+vida = 50
+dano = 5
+velocidade = 5
+arma = 'espada'
+defesa = 0
+
+
+# vida dos oponentes
+
+oponente1 = 30
+oponente2 = 40
+oponente3 = 50
+
 
 
 
@@ -53,20 +67,24 @@ def espada():
     global dano, velocidade
     dano = 5
     velocidade = 5
+    arma = str('espada')
     
 def machado():
     global dano, velocidade
     dano = 8
     velocidade = 3
+    arma = str('Machado')
 
 
 def adaga():
     global dano, velocidade
     dano = 3
     velocidade = 8
+    arma = str('Adaga')
 
 # introdução do game
 
+'''
 
 Abertura = [
     'Narrador: você acorda em uma cela suja e enferrujada com o barulho de uma multidão muito entusiasmada ...',
@@ -129,14 +147,14 @@ linha()
 pontos(10)
 
 
-inicio = [
+menu = [
     'Narrador: Para iniciar o game basta digitar start',
     'Narrador: Se quiser sair do game basta digitar exit',
 ]
 
-imprimir(inicio)
+imprimir(menu)
 
-inicio = 'Narrador: vamos lá então!!!'
+comecar = 'Narrador: vamos lá então!!!'
 
 close = [
     'Narrador: que pena, te vejo em uma proxima vez!',
@@ -152,7 +170,7 @@ burro = [
 start = str(input('Narrador: deseja iniciar o game?   ')).upper()
 
 if start == 'START':
-    imprimir(inicio)
+    imprimir(comecar)
     pontos(10)
 elif start == 'EXIT':
     imprimir(close)
@@ -261,6 +279,8 @@ pontos(10)
 atributos = [
     'Narrado: vamos lembrar ...',
     'Narrado: seus atributos nessa partida são ...',
+    f'Vida: {vida}'
+    f'Arma: {arma}',
     f'Sorte: {sorte}',
     f'Dano: {dano}',
     f'Velocidade: {velocidade}'
@@ -268,7 +288,34 @@ atributos = [
 ]
 
 pontos(5)
+linha()
+
 
 
 # inicio do game
 
+
+luta1 = [
+    'Narrador: após alguns minutos sentado no banco a grade da cela começa a se levantar lentamente.',
+    f'Narrador: você pega sua {arma} e olha para o velho ...',
+    'Velho: Boa sorte jovem!',
+    'Narrador: você agradece com a cabeça e sai de sua cela ...',
+    'Narrador: a multidão do coliseu está totalmente maluca, esperando uma luta das boas, já que as ultimas lutas não foram tão boas assim ...',
+    'Narrador: você olha o redor e todos estão te assistindo e vê uma pessoa vindo em sua direção.',
+    'Narrador: vocês dois começam a andar um na direção do outro.',
+    'Narrador: quando chegam mais perto um do outro você o analisa.',
+    'Narrador: é um homem em panos cheias de sangue, sem um braço e uma espada longa com um escudo redondo de ferro nas costas.',
+    'Narrador: ele entra em posição de ataque com sua espada.',
+    'Narrador: vc acena com a cabeça e entra em pose de ataque.',
+    'Narrador: acho que a briga vai começar agora ...'
+]
+
+imprimir(luta1)
+
+pontos(10)
+linha()
+print('         Soldado da solidão')
+linha()
+
+
+'''
