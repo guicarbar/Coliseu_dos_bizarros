@@ -18,16 +18,23 @@ dano = 5
 velocidade = 5
 arma = 'espada'
 defesa = 0
+escudo = False
 
 golpe = 0
+sofrido = 0
 
-alet = randint(1,10)
+alet = randint(1,20)
 
 # vida dos oponentes
 
 oponente1 = 30
+danooponente1 = 6
+
 oponente2 = 40
+danooponente2 = 7
+
 oponente3 = 50
+danooponente3 = 8
 
 
 
@@ -90,9 +97,9 @@ def adaga():
 def azarataque():
     global dano, alet
     
-    if alet == 10:
+    if alet == 20:
         golpe = dano + 1
-    elif 10 > alet > 5:
+    elif 20 > alet >= 9:
         golpe = dano - 1
     else:
         golpe = dano -2
@@ -102,9 +109,9 @@ def azarataque():
 def neutroataque():
     global dano, alet
     
-    if alet >= 9:
+    if alet >= 18:
         golpe = dano + 2
-    elif 10 > alet > 5:
+    elif 17 >= alet >= 7:
         golpe = dano
     else:
         golpe = dano -1
@@ -114,9 +121,9 @@ def neutroataque():
 def sorteataque():
     global dano, alet
     
-    if alet == 10:
+    if alet > 16:
         golpe = dano + 3
-    elif 10 > alet > 5:
+    elif 16 >= alet >= 5:
         golpe = dano + 1
     else:
         golpe = dano
@@ -134,7 +141,7 @@ def ataque():
         golpe = sorteataque()
 
 
-def menosvida(oponente):
+def menosvidao(oponente):
     global golpe, oponente1, oponente2, oponente3
     
     if oponente == 'oponente1':
@@ -147,13 +154,75 @@ def menosvida(oponente):
         oponente3 -= golpe
         return oponente3
 
+def verificarvida(teste):
+    return teste <= 0
 
 
+def esquivaazarada(z):
+    global velocidade, sofrido
+    
+    if velocidade == 8:
+        sofrido = z
+    elif velocidade == 5:
+        sofrido = z + 1
+    elif velocidade == 3:
+        sofrido = z + 2
+    return sofrido
+
+
+def esquivaneutra(z):
+    global velocidade, sofrido
+    
+    if velocidade == 8:
+        sofrido = z -1
+    elif velocidade == 5:
+        sofrido = z
+    elif velocidade == 3:
+        sofrido = z + 1
+    return sofrido
+
+
+def esquivasortuda(z):
+    global velocidade, sofrido
+    
+    if velocidade == 8:
+        sofrido = z - 2
+    elif velocidade == 5:
+        sofrido = z - 1
+    elif velocidade == 3:
+        sofrido = z
+    return sofrido
+
+
+def esquiva(z):
+    global sorte, sofrido
+    
+    if sorte == 1:
+        sofrido = esquivaazarada(z)
+    elif sorte == 2:
+        sofrido = esquivaneutra(z)
+    else:
+        sofrido = esquivasortuda(z)
+
+
+def escudoouesquiva(z):
+    global escudo, sofrido
+    
+    if escudo == False:
+        esquiva(z)
+    if escudo == True:
+        escolhadefesa(z)
+
+
+def menosvida():
+    global sofrido, vida
+
+    vida -= sofrido
 
 
 # introdução do game
 
-
+'''
 
 Abertura = [
     'Narrador: você acorda em uma cela suja e enferrujada com o barulho de uma multidão muito entusiasmada ...',
@@ -392,6 +461,7 @@ luta1 = [
     'Narrador: vocês dois começam a andar um na direção do outro.',
     'Narrador: quando chegam mais perto um do outro você o analisa.',
     'Narrador: é um homem em panos cheias de sangue, sem um braço e uma espada longa com um escudo redondo de ferro nas costas.',
+    'Narrador: aquele escudo parece ser um item bom ...'
     'Narrador: ele entra em posição de ataque com sua espada.',
     'Narrador: vc acena com a cabeça e entra em pose de ataque.',
     'Narrador: acho que a briga vai começar agora ...'
@@ -406,12 +476,28 @@ imprimir(adversario1)
 linha()
 pontos(10)
 
+mensagens1luta1 = ['Narrador: você cheio de confiança parte para atacar primeiro ...']
 
-
-
-
+imprimir(mensagens1luta1)
 
 ataque()
-menosvida('oponente1')
+menosvidao('oponente1')
 
+mensagens2luta1 = [
+    'Narrador: neste momento você percebe que a luta não vai ser tão fácil assim, pois seu adversário parece não ter sofrido tanto quanto um ser humano normal ...',
+    'Narrador: que a luta continue.',
+    'Narrador: enquanto se recupera do golpe que acabou de desferir, seu oponente vem em sua direção para te atacar.',
+    'Narrador: acho q é sua vez de se defender'
+]
+
+imprimir(mensagens2luta1)
+pontos(3)
+
+
+'''
+
+
+while verificarvida(oponente1) == False:
+    escudoouesquiva(danooponente1)
+    menosvida
 
