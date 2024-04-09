@@ -19,6 +19,7 @@ velocidade = 5
 arma = 'espada'
 defesa = 0
 
+alet = randint(1,10)
 
 # vida dos oponentes
 
@@ -316,6 +317,71 @@ pontos(10)
 linha()
 print('         Soldado da solidão')
 linha()
+pontos(10)
 
 
 '''
+
+
+def azarataque():
+    global dano, arma, alet
+    
+    if alet == 10:
+        golpe = dano + 1
+    elif 10 > alet > 5:
+        golpe = dano - 1
+    else:
+        golpe = dano -2
+        
+               
+def neutroataque():
+    global dano, arma, alet
+    
+    if alet >= 9:
+        golpe = dano + 2
+    elif 10 > alet > 5:
+        golpe = dano
+    else:
+        golpe = dano -1
+
+
+def sorteataque():
+    global dano, arma, alet
+    
+    if alet == 10:
+        golpe = dano + 3
+    elif 10 > alet > 5:
+        golpe = dano + 1
+    else:
+        golpe = dano
+        
+
+def ataque():
+    global sorte
+    
+    if sorte == 1:
+        azarataque()
+    elif sorte == 2:
+        neutroataque()
+    else:
+        sorteataque()
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
