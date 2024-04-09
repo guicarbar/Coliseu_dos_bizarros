@@ -14,8 +14,8 @@ from random import randint
 sorte = 3
 
 vida = 50
-dano = 5
-velocidade = 5
+dano = 0
+velocidade = 0
 arma = 'espada'
 defesa = 0
 escudo = False
@@ -23,18 +23,18 @@ escudo = False
 golpe = 0
 sofrido = 0
 
-alet = randint(1,20)
+round = 1
 
 # vida dos oponentes
 
 oponente1 = 30
-danooponente1 = 6
+danooponente1 = 4
 
 oponente2 = 40
-danooponente2 = 7
+danooponente2 = 5
 
 oponente3 = 50
-danooponente3 = 8
+danooponente3 = 6
 
 
 
@@ -45,7 +45,7 @@ def write(t):
     for l in t:
         sys.stdout.write(l)
         sys.stdout.flush()
-        sleep(0.05)
+        sleep(0.001)
         
 
 def imprimir(frases):
@@ -95,7 +95,9 @@ def adaga():
 
 
 def azarataque():
-    global dano, alet
+    global dano
+    
+    alet = randint(1,20)
     
     if alet == 20:
         golpe = dano + 1
@@ -107,7 +109,9 @@ def azarataque():
 
       
 def neutroataque():
-    global dano, alet
+    global dano
+    
+    alet = randint(1,20)
     
     if alet >= 18:
         golpe = dano + 2
@@ -119,7 +123,9 @@ def neutroataque():
 
 
 def sorteataque():
-    global dano, alet
+    global dano
+    
+    alet = randint(1,20)
     
     if alet > 16:
         golpe = dano + 3
@@ -153,9 +159,6 @@ def menosvidao(oponente):
     elif oponente == 'oponente3':
         oponente3 -= golpe
         return oponente3
-
-def verificarvida(teste):
-    return teste <= 0
 
 
 def esquivaazarada(z):
@@ -222,7 +225,7 @@ def menosvida():
 
 # introdução do game
 
-'''
+
 
 Abertura = [
     'Narrador: você acorda em uma cela suja e enferrujada com o barulho de uma multidão muito entusiasmada ...',
@@ -392,20 +395,19 @@ pontos(3)
 
 escolha = str(input('Narrador: qual arma você quer?     ')).upper()
 
-
-espada = [
+mensagemespada = [
     'Narrador: voce escolheu a espada.',
     'Narrador: uma boa escolha, neutra eu diria.',
     'Narrador: não me decepcione.'
 ]
 
-machado = [
+mensagemmachado = [
     'Narrador: você escolheu a machado.',
     'Narrador: essa escolha sua e interessante, vamos ver como você vai se sair.',
     'Narrador: não me decepcione.'
 ]
 
-adaga = [
+mensagemadaga = [
     'Narrador: você escolheu a adaga.',
     'Narrador: essa escolha sua e interessante, vamos ver como você vai se sair.',
     'Narrador: não me decepcione.'
@@ -413,14 +415,16 @@ adaga = [
 
 
 if escolha == 'ESPADA':
-    imprimir(espada)
+    imprimir(mensagemespada)
     espada()
 elif escolha == 'MACHADO':
-    imprimir(machado)
+    imprimir(mensagemmachado)
     machado()
 elif escolha == 'ADAGA':
-    imprimir(adaga)
+    imprimir(mensagemadaga)
     adaga()
+else:
+    print("Opção inválida! Por favor, escolha entre 'ESPADA', 'MACHADO' ou 'ADAGA'.")
 
 
 
@@ -433,16 +437,16 @@ pontos(10)
 atributos = [
     'Narrado: vamos lembrar ...',
     'Narrado: seus atributos nessa partida são ...',
-    f'Vida: {vida}'
+    f'Vida: {vida}',
     f'Arma: {arma}',
     f'Sorte: {sorte}',
     f'Dano: {dano}',
-    f'Velocidade: {velocidade}'
+    f'Velocidade: {velocidade}',
     'Agora vamos continuar.'
 ]
 
-pontos(5)
-linha()
+imprimir(atributos)
+
 pontos(5)
 
 
@@ -476,28 +480,73 @@ imprimir(adversario1)
 linha()
 pontos(10)
 
+
+
 mensagens1luta1 = ['Narrador: você cheio de confiança parte para atacar primeiro ...']
 
 imprimir(mensagens1luta1)
 
-ataque()
-menosvidao('oponente1')
 
-mensagens2luta1 = [
-    'Narrador: neste momento você percebe que a luta não vai ser tão fácil assim, pois seu adversário parece não ter sofrido tanto quanto um ser humano normal ...',
-    'Narrador: que a luta continue.',
-    'Narrador: enquanto se recupera do golpe que acabou de desferir, seu oponente vem em sua direção para te atacar.',
-    'Narrador: acho q é sua vez de se defender'
+mensagemmorte = [
+    'Narrador: você e péssimo nesse jogo, HORRIVEL.',
+    'Narrador: vamos começar de novo.',
+    'Narrador: jogo reiniciara em 5 segundos.'
 ]
 
-imprimir(mensagens2luta1)
-pontos(3)
+mensagemcontinuar = [
+    'Narrador: tudo certo, vamos continuar para o próximo roud',
+    f'Narrador: roud {round}'
+]
 
 
-'''
+def vereificarvidaplayer():
+    if vida <= 0:
+        imprimir(mensagemmorte)
+        pontos(10)
+        reset()
+    else:
+        imprimir(mensagemcontinuar)
 
 
-while verificarvida(oponente1) == False:
+def fimdaluta1():
+    print('ainda nn tem mas vai ser a passagem de uma luta para a outra')
+
+
+def ciclodeluta1():
+    global oponente1
+    
+    ataque()
+    menosvidao('oponente1')
+    
+    mensagens2luta1 = [
+        f'Narrador: você causou {golpe} de dano ao seu oponente',
+        f'Narrador: ele ficou com {oponente1} de vida restante.',
+        'Narrador: neste momento você percebe que a luta não vai ser tão fácil assim, pois seu adversário parece não ter sofrido tanto quanto um ser humano normal ...',
+        'Narrador: que a luta continue.',
+        'Narrador: enquanto se recupera do golpe que acabou de desferir, seu oponente vem em sua direção para te atacar.',
+        'Narrador: acho q é sua vez de se defender.'
+    ]
+
+    imprimir(mensagens2luta1)
+
     escudoouesquiva(danooponente1)
-    menosvida
+    menosvida()
 
+    mensagens3luta1 = [            
+        f'Narrador: você se esquivou tomando {sofrido} de dano do seu oponente.',
+        f'Narrador: após esse golpe você ficou com {vida} de vida restante.'
+    ]
+    
+    imprimir(mensagens3luta1)
+
+
+
+while oponente1 > 0:    
+    vereificarvidaplayer()
+    ciclodeluta1()
+    
+    round += 1
+    
+
+print('esse foi o fim da luta')
+# luta 2
