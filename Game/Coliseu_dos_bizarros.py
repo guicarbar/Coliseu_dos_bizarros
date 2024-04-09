@@ -19,6 +19,8 @@ velocidade = 5
 arma = 'espada'
 defesa = 0
 
+golpe = 0
+
 alet = randint(1,10)
 
 # vida dos oponentes
@@ -58,34 +60,100 @@ def pontos(n):
         print('.')
         sleep(0.05)
         c += 1
-        
+
 
 def close():
     sys.exit()
     
     
 def espada():
-    global dano, velocidade
+    global dano, velocidade, arma
     dano = 5
     velocidade = 5
-    arma = str('espada')
-    
+    arma = 'espada'
+
+
 def machado():
-    global dano, velocidade
+    global dano, velocidade, arma
     dano = 8
     velocidade = 3
-    arma = str('Machado')
+    arma = 'Machado'
 
 
 def adaga():
-    global dano, velocidade
+    global dano, velocidade, arma
     dano = 3
     velocidade = 8
-    arma = str('Adaga')
+    arma = 'Adaga'
+
+
+def azarataque():
+    global dano, alet
+    
+    if alet == 10:
+        golpe = dano + 1
+    elif 10 > alet > 5:
+        golpe = dano - 1
+    else:
+        golpe = dano -2
+    return golpe
+
+      
+def neutroataque():
+    global dano, alet
+    
+    if alet >= 9:
+        golpe = dano + 2
+    elif 10 > alet > 5:
+        golpe = dano
+    else:
+        golpe = dano -1
+    return golpe
+
+
+def sorteataque():
+    global dano, alet
+    
+    if alet == 10:
+        golpe = dano + 3
+    elif 10 > alet > 5:
+        golpe = dano + 1
+    else:
+        golpe = dano
+    return golpe
+
+
+def ataque():
+    global sorte, golpe
+    
+    if sorte == 1:
+        golpe = azarataque()
+    elif sorte == 2:
+        golpe = neutroataque()
+    else:
+        golpe = sorteataque()
+
+
+def menosvida(oponente):
+    global golpe, oponente1, oponente2, oponente3
+    
+    if oponente == 'oponente1':
+        oponente1 -= golpe
+        return oponente1
+    elif oponente == 'oponente2':
+        oponente2 -= golpe
+        return oponente2
+    elif oponente == 'oponente3':
+        oponente3 -= golpe
+        return oponente3
+
+
+
+
 
 # introdução do game
 
-'''
+
 
 Abertura = [
     'Narrador: você acorda em uma cela suja e enferrujada com o barulho de uma multidão muito entusiasmada ...',
@@ -100,7 +168,11 @@ Abertura = [
 
 imprimir(Abertura)
 
+
+
 # Tutorial do game
+
+
 
 tutorial_yes = [
     'Narrador: é bem simples vou te explicar ...',
@@ -128,21 +200,28 @@ if tutorial == 'S':
 elif tutorial == 'N':
     imprimir(tutorial_no)
 elif tutorial != 'S' and tutorial != 'N':
-    print('Narrador: erro, não reconhecido a escolha do jogador, apenas respostas como s ou n.')
-    print('Narrador: o jogo irá dar reset em 5 segundos')
+    mensagemerro = [
+        'Narrador: erro, não reconhecido a escolha do jogador, apenas respostas como s ou n.',
+        'Narrador: o jogo irá dar reset em 5 segundos'
+    ]
+    imprimir(mensagemerro)
     for c in range(1,6):
         print('.')
         c += 1
         sleep(1)
     reset()
     
+
   
 # abertura do game
+
+
 
 pontos(10)
 
 linha()
-print('         COLISEU DOS BIZARROS')
+mensagemabertura = ['         COLISEU DOS BIZARROS']
+imprimir(mensagemabertura)
 linha()
 
 pontos(10)
@@ -155,7 +234,7 @@ menu = [
 
 imprimir(menu)
 
-comecar = 'Narrador: vamos lá então!!!'
+comecar = ['Narrador: vamos lá então!!!']
 
 close = [
     'Narrador: que pena, te vejo em uma proxima vez!',
@@ -187,16 +266,19 @@ elif start != 'START' and start != 'EXIT':
 # sorte e seleção de arma
 
 
+
 if sorte == 1:
-    print(f'Narrador: sua sorte é {sorte}, parabéns você vai se ferrar muito.')
+    mensagemazar = [f'Narrador: sua sorte é {sorte}, parabéns você vai se ferrar muito.']
+    imprimir(mensagemazar)
 elif sorte == 2:
-    print(f'Narrador: sua sorte é {sorte}, eeehhh da pro gasto, não vai passar tanto sufoco assim.')
+    mensagemneutra = [f'Narrador: sua sorte é {sorte}, eeehhh da pro gasto, não vai passar tanto sufoco assim.']
+    imprimir(mensagemneutra)
 elif sorte == 3:
-    print(f'Narrador: sua sorte é {sorte}, OLHAAA ELE, VAI SER MOLEZINHA !!!')
-    
+    mensagemsorte = [f'Narrador: sua sorte é {sorte}, OLHAAA ELE, VAI SER MOLEZINHA !!!']
+    imprimir(mensagemsorte)
+
 
 pontos(5)
-
 
 armas1 = [
     'Narrador: agora vamos escolher sua arma ...',
@@ -272,7 +354,9 @@ elif escolha == 'ADAGA':
     adaga()
 
 
+
 # apresentando atributos do jogados
+
 
 
 pontos(10)
@@ -290,10 +374,12 @@ atributos = [
 
 pontos(5)
 linha()
+pontos(5)
 
 
 
 # inicio do game
+
 
 
 luta1 = [
@@ -315,73 +401,17 @@ imprimir(luta1)
 
 pontos(10)
 linha()
-print('         Soldado da solidão')
+adversario1 = ['         Soldado da solidão']
+imprimir(adversario1)
 linha()
 pontos(10)
 
 
-'''
-
-
-def azarataque():
-    global dano, arma, alet
-    
-    if alet == 10:
-        golpe = dano + 1
-    elif 10 > alet > 5:
-        golpe = dano - 1
-    else:
-        golpe = dano -2
-        
-               
-def neutroataque():
-    global dano, arma, alet
-    
-    if alet >= 9:
-        golpe = dano + 2
-    elif 10 > alet > 5:
-        golpe = dano
-    else:
-        golpe = dano -1
-
-
-def sorteataque():
-    global dano, arma, alet
-    
-    if alet == 10:
-        golpe = dano + 3
-    elif 10 > alet > 5:
-        golpe = dano + 1
-    else:
-        golpe = dano
-        
-
-def ataque():
-    global sorte
-    
-    if sorte == 1:
-        azarataque()
-    elif sorte == 2:
-        neutroataque()
-    else:
-        sorteataque()
-        
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+ataque()
+menosvida('oponente1')
 
 
