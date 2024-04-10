@@ -23,8 +23,6 @@ escudo = False
 golpe = 0
 sofrido = 0
 
-round = 1
-
 # vida dos oponentes
 
 oponente1 = 30
@@ -135,8 +133,60 @@ def sorteataque():
         golpe = dano
     return golpe
 
+def azarataquepesado():
+    global dano
+    
+    alet = randint(1,100)
+    
+    if alet > 95:
+        golpe = dano * 2
+    elif alet <= 95 or alet > 60:
+        golpe = dano 
+    else:
+        golpe = dano - 1
+    return golpe
 
-def ataque():
+      
+def neutroataquepesado():
+    global dano
+    
+    alet = randint(1,100)
+    
+    if alet > 90:
+        golpe = dano * 2
+    elif alet <= 90 or alet > 50:
+        golpe = dano 
+    else:
+        golpe = dano - 1
+    return golpe
+
+
+def sorteataquepesado():
+    global dano
+    
+    alet = randint(1,100)
+    
+    if alet > 85:
+        golpe = dano * 2
+    elif alet <= 85 or alet > 40:
+        golpe = dano 
+    else:
+        golpe = dano - 1
+    return golpe
+
+
+def ataquepesado():
+    global sorte, golpe
+    
+    if sorte == 1:
+        golpe = azarataquepesado()
+    elif sorte == 2:
+        golpe = neutroataquepesado()
+    else:
+        golpe = sorteataquepesado()
+
+
+def ataqueleve():
     global sorte, golpe
     
     if sorte == 1:
@@ -495,7 +545,6 @@ mensagemmorte = [
 
 mensagemcontinuar = [
     'Narrador: tudo certo, vamos continuar para o próximo roud',
-    f'Narrador: roud {round}'
 ]
 
 
@@ -515,7 +564,18 @@ def fimdaluta1():
 def ciclodeluta1():
     global oponente1
     
-    ataque()
+    atq = input('atque leve ou pesado ? resposta leve ou pesado').upper()
+    
+    if atq == 'LEVE':
+        ataqueleve()
+    elif atq == 'PESADO':
+        ataquepesado()
+    else:
+        print('erro ao reconhecer a escolha')
+        pontos(5)
+        ciclodeluta1()
+    
+    
     menosvidao('oponente1')
     
     mensagens2luta1 = [
@@ -545,8 +605,23 @@ while oponente1 > 0:
     vereificarvidaplayer()
     ciclodeluta1()
     
-    round += 1
-    
 
 print('esse foi o fim da luta')
 # luta 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
