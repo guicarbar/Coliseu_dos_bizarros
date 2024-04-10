@@ -337,6 +337,46 @@ def escolhadefesa(z):
         escolhadefesa(z)
 
 
+def vereificarvidaplayer():
+    if vida <= 0:
+        imprimir(mensagemmorte)
+        pontos(10)
+        reset()
+    else:
+        imprimir(mensagemcontinuar)
+
+
+def beber():
+    global vida
+    
+    vida += 20
+    print('Narrador: voce sente suas feridas se fechando')
+
+
+def quebrar():
+    global sorte
+    
+    sorte += 1
+    print('Narrador: voce sente sua sorte aumentando')
+
+
+def pocao():
+    beberounao = str(input('vc vai beber ou nao a poção? s ou n')).upper()
+    
+    if beberounao == 'S':
+        beber()
+    elif beberounao == 'N':
+        quebrar()
+    else:
+        print('Narrador: não é uma opção valida, vamos lá cara ...')
+        pocao()
+
+
+def forca():
+    global dano
+    
+    dano += 1
+
 # introdução do game
 
 
@@ -608,21 +648,23 @@ mensagemmorte = [
 ]
 
 mensagemcontinuar = [
-    'Narrador: tudo certo, vamos continuar para o próximo roud',
+    'Narrador: tudo certo, vamos continuar.'
 ]
 
 
-def vereificarvidaplayer():
-    if vida <= 0:
-        imprimir(mensagemmorte)
-        pontos(10)
-        reset()
-    else:
-        imprimir(mensagemcontinuar)
+mensagens2luta1 = [
+        f'Narrador: você causou {golpe} de dano ao seu oponente',
+        f'Narrador: ele ficou com {oponente1} de vida restante.',
+        'Narrador: enquanto se recupera do golpe que acabou de desferir, seu oponente vem em sua direção para te atacar.',
+        'Narrador: acho q é sua vez de se defender.'
+    ]
 
 
-def fimdaluta1():
-    print('ainda nn tem mas vai ser a passagem de uma luta para a outra')
+mensagens3luta1 = [            
+        f'Narrador: você se esquivou tomando apenas {sofrido} de dano do seu oponente.',
+        f'Narrador: após esse golpe você ficou com {vida} de vida restante.',
+        'Narrador: tome cuidado na proxima vez'
+    ]
 
 
 def ciclodeluta1():
@@ -641,25 +683,12 @@ def ciclodeluta1():
     
     
     menosvidao('oponente1')
-    
-    mensagens2luta1 = [
-        f'Narrador: você causou {golpe} de dano ao seu oponente',
-        f'Narrador: ele ficou com {oponente1} de vida restante.',
-        'Narrador: neste momento você percebe que a luta não vai ser tão fácil assim, pois seu adversário parece não ter sofrido tanto quanto um ser humano normal ...',
-        'Narrador: que a luta continue.',
-        'Narrador: enquanto se recupera do golpe que acabou de desferir, seu oponente vem em sua direção para te atacar.',
-        'Narrador: acho q é sua vez de se defender.'
-    ]
 
     imprimir(mensagens2luta1)
 
     escudoouesquiva(danooponente1)
+    
     menosvida()
-
-    mensagens3luta1 = [            
-        f'Narrador: você se esquivou tomando {sofrido} de dano do seu oponente.',
-        f'Narrador: após esse golpe você ficou com {vida} de vida restante.'
-    ]
     
     imprimir(mensagens3luta1)
 
@@ -668,10 +697,42 @@ def ciclodeluta1():
 while oponente1 > 0:    
     vereificarvidaplayer()
     ciclodeluta1()
-    
 
-print('esse foi o fim da luta')
+
+
 # entre lutas
+
+
+
+terminodeluta1 = [
+    'Narrador: e com um último golpe você finaliza seu oponente.',
+    'Narrador: o coliseu inteiro entra em alvoroço por ver a melhor luta da noite até esse momento.',
+    'Narrador:  mas a única coisa que você consegue escutar é o ultimo suspiro de seu adversário.',
+    'Narrador: ele morre em silencio com um olhar de agradecimento.',
+    'Narrador: enquanto escuta o barulho da multidão observa o escudo amarrado nas costas do corpo dele ...',
+    'Narrador: e pensa ser uma boa ideia usar esse escudo nas próximas lutas, já q parece que essa não será a última luta da noite ...',
+    'Narrador:  você pega o escudo e o empunha na outra mão.',
+    'Narrador: após alguns segundo parado ali com o barulho da multidão diminuído cada vez mais, você sente ficar mais forte.',
+    'Narrador: enquanto pensa de onde vem essa força percebe que tem outra cela se abrindo.',
+    'Narrador: dela sai uma figura correndo em sua direção.',
+    'Narrador: você entra em posição de ataque e se prepara para a próxima luta ...'
+]
+
+pegarescudo()
+
+imprimir(terminodeluta1)
+
+pontos(10)
+linha()
+print('         O maniaco')
+linha()
+pontos(10)
+
+
+
+# luta 2
+
+
 
 def ciclodeluta2():
     global oponente2
@@ -688,48 +749,58 @@ def ciclodeluta2():
         ciclodeluta2()
 
     menosvidao('oponente2')
+
+    imprimir(mensagens2luta1)
     
+    escudoouesquiva(danooponente2)
     
+    menosvida()
+    
+    imprimir(mensagens3luta1)
 
-# luta 2
-
-
-pegarescudo()
 
 while oponente2 > 0:
     vereificarvidaplayer()
     ciclodeluta2()
-    
-    escudoouesquiva(danooponente2)
-    menosvida()
+
 
 
 # entre as lutas
 
-def beber():
-    global vida
-    
-    vida += 25
 
+terminodeluta2 = [
+    'Narrador: você desfere um golpe fatal em seu oponente.',
+    'Narrador: ele segura seu braço e olha nos eu olhos enquanto morre.',
+    'Narrador: você pode ver a vida esvaindo de seu corpo.',
+    'Narrador: e nesse momento você consegue analisar como era seu oponente.',
+    'Narrador: a luta início tão rápida que nem consegui ver que ele era forte e tinha o corpo inteiro cheio de cicatrizes.',
+    'Narrador: enquanto pensa nessa luta e sente ficando mais forte escuta uma gargalhada ...',
+    'Narrador: olha para a plateia e vê um rei dando risada, ele joga um frasco para você.',
+    'Narrador: você o agarra e percebe que ele tem um liquido verde dentro.',
+    'Narrador: você não sabe para que serve e muito menos o que é.'
+]
 
-def quebrar():
-    global sorte
-    
-    sorte += 1
+imprimir(terminodeluta2)
 
+pocao()
 
-def pocao():
-    beberounao = str(input('vc vai beber ou nao a poção? s ou n')).upper()
-    
-    if beberounao == 'S':
-        beber()
-    elif beberounao == 'N':
-        quebrar()
-    else:
-        print('nn entendi')
-        pocao()
+forca()
+
+proxima = [
+    'Narrador: enquanto sente a magia acontecendo dentro do seu corpo.',
+    'Narrador: você vê outra cela se abrindo.',
+    'Narrador: nesse momento a plateia fica em silencio pela primeira vez.',
+    'Narrador: de dentro da sombra da cela sai um homem alto e muto forte com um martelo gigante nas mãos.',
+    'Narrador: ele anda calmamente em sua direção.',
+    'Narrador: quanto mais se aproxima dele, você vê que ele está chorando e resmungando em uma língua desconhecida ...',
+    'Narrador: você acha engraçado isso, talvez esse foi o primeiro sorriso da noite.',
+    'Narrador: mas mesmo assim se prepara para a luta.',
+    'Narrador: e do nada o homem da uma marretada no chão extremamente furioso, enxuga suas lagrimas e se prepara.',
+    'Narrador: que a luta comece então.'
+]
 
 # luta 3
+
 
 
 def ciclodeluta3():
@@ -748,20 +819,52 @@ def ciclodeluta3():
 
     menosvidao('oponente3')
 
+    imprimir(mensagens2luta1)
+    
+    escudoouesquiva(danooponente3)
+    
+    menosvida()
+    
+    imprimir(mensagens3luta1)
 
 
-print(vida)
-pocao()
 
 while oponente3 > 0:
     vereificarvidaplayer()
     ciclodeluta3()
-    
-    escudoouesquiva(danooponente3)
-    menosvida()
-    
-    
+
+
 # fim do game
 
-print(vida)
-print('fim do game')
+
+lutafinal = [
+    'Narrador: com dois golpes cansados você finaliza seu oponente.',
+    'Narrador: e pela segunda vez nessa noite a plateia fica em silencio.',
+    'Narrador: você olha para o gigante caído no chão e sente alivio.',
+    'Narrador: pensa que está prestes a ter um infarto, seu coração não para de bater desesperadamente.',
+    'Narrador: nesse momento você olha para o rei, ele já está te encarando.',
+    'Narrador: da uma gargalhada e puxa uma alavanca que estava do seu lado.',
+    'Narrador: e fala te agradecendo.',
+    'Rei: você divertiu minha noite, você está livre para ir embora.',
+    'Narrador: você percebe que um portão de madeira se abre, parece ser uma saída.',
+    'Narrador: você caminha em direção ...',
+    'Narrador: atravessa e percebe que está em uma cidade livre para ir e vir a hora que quiser.',
+    'Narrador: você anda por uns minutos pela cidade, você só queria sair de perto daquele lugar.',
+    'Narrador: encontra uma praça e senta em um banco.',
+    'Narrador: acaba pegando no sono ali mesmo ...',
+    'Narrador: assim acaba sua jornada.',
+    'Narrador: obrigado por jogar'
+]
+
+
+final = str(input('Gostou do game ? s ou n')).upper()
+
+if final == 'S':
+    print('Narrador: que otimo, te agradeço por isso!')
+elif final == 'N':
+    print('Narrador: nao ligo para a sua opniao, tchau')
+else:
+    print('Narrador: burro dmais não é possivel ...')
+
+pontos(10)
+close()
