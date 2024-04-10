@@ -326,7 +326,7 @@ def usarescudo(z):
 
 
 def escolhadefesa(z):
-    ddef = input('usar escudo ou esquiva ?').upper
+    ddef = str(input('usar escudo ou esquiva ?')).upper()
     
     if ddef == 'ESCUDO':
         usarescudo(z)
@@ -673,18 +673,95 @@ while oponente1 > 0:
 print('esse foi o fim da luta')
 # entre lutas
 
+def ciclodeluta2():
+    global oponente2
+    
+    atq = input('atque leve ou pesado ? resposta leve ou pesado').upper()
+    
+    if atq == 'LEVE':
+        ataqueleve()
+    elif atq == 'PESADO':
+        ataquepesado()
+    else:
+        print('erro ao reconhecer a escolha')
+        pontos(5)
+        ciclodeluta2()
 
+    menosvidao('oponente2')
+    
+    
 
 # luta 2
 
 
+pegarescudo()
+
+while oponente2 > 0:
+    vereificarvidaplayer()
+    ciclodeluta2()
+    
+    escudoouesquiva(danooponente2)
+    menosvida()
+
+
+# entre as lutas
+
+def beber():
+    global vida
+    
+    vida += 25
+
+
+def quebrar():
+    global sorte
+    
+    sorte += 1
+
+
+def pocao():
+    beberounao = str(input('vc vai beber ou nao a poção? s ou n')).upper()
+    
+    if beberounao == 'S':
+        beber()
+    elif beberounao == 'N':
+        quebrar()
+    else:
+        print('nn entendi')
+        pocao()
+
+# luta 3
+
+
+def ciclodeluta3():
+    global oponente3
+    
+    atq = input('atque leve ou pesado ? resposta leve ou pesado').upper()
+    
+    if atq == 'LEVE':
+        ataqueleve()
+    elif atq == 'PESADO':
+        ataquepesado()
+    else:
+        print('erro ao reconhecer a escolha')
+        pontos(5)
+        ciclodeluta3()
+
+    menosvidao('oponente3')
 
 
 
+print(vida)
+pocao()
 
+while oponente3 > 0:
+    vereificarvidaplayer()
+    ciclodeluta3()
+    
+    escudoouesquiva(danooponente3)
+    menosvida()
+    
+    
+# fim do game
 
-
-
-
-
-
+print(vida)
+print('fim do game')
