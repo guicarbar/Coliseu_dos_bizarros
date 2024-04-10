@@ -8,16 +8,12 @@ from random import randint
 # area das variaveis
 
 
-# sorte = int(randint(1,3))
-
-
-sorte = 3
+sorte = int(randint(1,3))
 
 vida = 50
 dano = 0
 velocidade = 0
-arma = 'espada'
-defesa = 0
+arma = 0
 escudo = False
 
 golpe = 0
@@ -372,10 +368,6 @@ def pocao():
         pocao()
 
 
-def forca():
-    global dano
-    
-    dano += 1
 
 # introdução do game
 
@@ -720,8 +712,6 @@ terminodeluta1 = [
 
 pegarescudo()
 
-forca()
-
 imprimir(terminodeluta1)
 
 pontos(10)
@@ -785,8 +775,6 @@ terminodeluta2 = [
 imprimir(terminodeluta2)
 
 pocao()
-
-forca()
 
 proxima = [
     'Narrador: enquanto sente a magia acontecendo dentro do seu corpo.',
