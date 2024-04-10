@@ -720,6 +720,8 @@ terminodeluta1 = [
 
 pegarescudo()
 
+forca()
+
 imprimir(terminodeluta1)
 
 pontos(10)
@@ -798,6 +800,14 @@ proxima = [
     'Narrador: e do nada o homem da uma marretada no chão extremamente furioso, enxuga suas lagrimas e se prepara.',
     'Narrador: que a luta comece então.'
 ]
+
+pontos(10)
+linha()
+print('         O gigante lamentador')
+linha()
+pontos(10)
+
+
 
 # luta 3
 
