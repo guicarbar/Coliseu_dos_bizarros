@@ -272,6 +272,70 @@ def menosvida():
 
     vida -= sofrido
 
+def pegarescudo():
+    global escudo
+    
+    escudo = True
+
+
+def escudoazar(z):
+    global velocidade, sofrido
+    
+    if velocidade == 8:
+        sofrido = z - 1
+    elif velocidade == 5:
+        sofrido = z - 2
+    elif velocidade == 3:
+        sofrido = z - 3
+    return sofrido
+
+
+def escudoneutro(z):
+    global velocidade, sofrido
+    
+    if velocidade == 8:
+        sofrido = z 
+    elif velocidade == 5:
+        sofrido = z - 1
+    elif velocidade == 3:
+        sofrido = z - 2
+    return sofrido
+
+
+def escudosorte(z):
+    global velocidade, sofrido
+    
+    if velocidade == 8:
+        sofrido = z - 1
+    elif velocidade == 5:
+        sofrido = z - 2 
+    elif velocidade == 3:
+        sofrido = z - 3
+    return sofrido
+
+
+def usarescudo(z):
+    global sorte
+    
+    if sorte == 1:
+        escudoazar(z)
+    elif sorte == 2:
+        escudoneutro(z)
+    else:
+        escudosorte(z)
+
+
+def escolhadefesa(z):
+    ddef = input('usar escudo ou esquiva ?').upper
+    
+    if ddef == 'ESCUDO':
+        usarescudo(z)
+    elif ddef == 'ESQUIVA':
+        esquiva(z)
+    else:
+        print('sorry nn entendi')
+        escolhadefesa(z)
+
 
 # introdução do game
 
@@ -607,12 +671,11 @@ while oponente1 > 0:
     
 
 print('esse foi o fim da luta')
+# entre lutas
+
+
+
 # luta 2
-
-
-
-
-
 
 
 
