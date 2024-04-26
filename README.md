@@ -8,7 +8,7 @@ Ele e um RPG de com historias e funciona por escolhas, sendo que cada escolha po
 
 :pushpin: __*Experimente jogar um pouco*__
 
-## sobre a historia game :clubs:
+## Sobre a historia game :clubs:
 
 A historia do game é simples.
 Voce acorda em um coliseu com mostros e tem que lutar para sobreviver e sair do lugar
