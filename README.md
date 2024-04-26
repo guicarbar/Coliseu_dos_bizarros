@@ -15,7 +15,7 @@ Voce acorda em um coliseu com mostros e tem que lutar para sobreviver e sair do 
 serão 3 batalhas com monstros diferentes a cada batalha.
 Aguente aé a terceira luta e veja oque acontece ...
 
-## sobre a jogabilidade :video_game:
+## Sobre a jogabilidade :video_game:
 
 Voce vai escolher entre 3 armas e cada uma delas muda a sua jogabilidade.
 Cada partida aleatoriza o valor de sua sorte para que nunca seja o mesmo jogo.
