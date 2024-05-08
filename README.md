@@ -1,3 +1,5 @@
+🟢 🟡 🔴
+
 # Coliseu_dos_bizarros :fire: :fire:
 
 :floppy_disk:
